@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AXIS 1 | Gerador de Contratos</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <p class="eyebrow">AXIS 1 Marketing Estratégico</p>
+      <h1>Gerador Premium de Contratos</h1>
+      <p class="subtitle">Preencha, revise, salve o cliente e gere o PDF em poucos cliques.</p>
+    </div>
+    <div class="contract-badge">
+      <span>Nº do contrato</span>
+      <strong id="numeroContrato">AXIS1-2026-0001</strong>
+    </div>
+  </header>
+
+  <main class="layout">
+    <section class="panel form-panel">
+      <div class="section-title">
+        <span>01</span>
+        <h2>Cliente</h2>
+      </div>
+
+      <label>Selecionar cliente salvo</label>
+      <div class="row-inline">
+        <select id="clienteSalvo"></select>
+        <button type="button" class="btn ghost" id="carregarCliente">Carregar</button>
+      </div>
+
+      <div class="grid two">
+        <div>
+          <label>Razão social / Nome completo *</label>
+          <input id="nomeCliente" placeholder="Ex: Empresa LTDA" />
+        </div>
+        <div>
+          <label>CPF/CNPJ *</label>
+          <input id="cpfCnpj" placeholder="00.000.000/0000-00" />
+        </div>
+      </div>
+
+      <label>Endereço completo *</label>
+      <input id="endereco" placeholder="Rua, número, complemento, bairro" />
+
+      <div class="grid three">
+        <div>
+          <label>Cidade/UF *</label>
+          <input id="cidadeUf" placeholder="Araraquara/SP" />
+        </div>
+        <div>
+          <label>CEP</label>
+          <input id="cep" placeholder="00000-000" />
+        </div>
+        <div>
+          <label>WhatsApp *</label>
+          <input id="telefone" placeholder="(16) 99999-9999" />
+        </div>
+      </div>
+
+      <label>E-mail</label>
+      <input id="email" placeholder="cliente@email.com" />
+
+      <div class="actions compact">
+        <button type="button" class="btn secondary" id="salvarCliente">Salvar cliente</button>
+        <button type="button" class="btn danger" id="excluirCliente">Excluir cliente salvo</button>
+      </div>
+
+      <div class="section-title">
+        <span>02</span>
+        <h2>Plano e pagamento</h2>
+      </div>
+
+      <label>Plano contratado *</label>
+      <select id="plano"></select>
+
+      <div class="grid two">
+        <div>
+          <label>Forma de pagamento</label>
+          <select id="formaPagamento">
+            <option value="cheio">Valor cheio</option>
+            <option value="parcelado">2x no mês (60/40)</option>
+          </select>
+        </div>
+        <div>
+          <label>Dia de vencimento (valor cheio)</label>
+          <select id="vencimentoCheio">
+            <option value="5">Dia 5</option>
+            <option value="10">Dia 10</option>
+            <option value="20" selected>Dia 20</option>
+            <option value="personalizado">Personalizado</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="vencimentoPersonalizadoBox" class="hidden">
+        <label>Vencimento personalizado</label>
+        <input id="vencimentoPersonalizado" placeholder="Ex: todo dia 15" />
+      </div>
+
+      <div id="parcelasBox" class="grid two hidden">
+        <div>
+          <label>Vencimento 1ª parcela</label>
+          <select id="vencimentoParcela1">
+            <option value="5">Dia 5</option>
+            <option value="10">Dia 10</option>
+            <option value="20" selected>Dia 20</option>
+            <option value="personalizado">Personalizado</option>
+          </select>
+          <input id="vencimentoParcela1Personalizado" class="hidden small-top" placeholder="Ex: todo dia 18" />
+        </div>
+        <div>
+          <label>Vencimento 2ª parcela</label>
+          <select id="vencimentoParcela2">
+            <option value="5">Dia 5</option>
+            <option value="10" selected>Dia 10</option>
+            <option value="20">Dia 20</option>
+            <option value="personalizado">Personalizado</option>
+          </select>
+          <input id="vencimentoParcela2Personalizado" class="hidden small-top" placeholder="Ex: todo dia 28" />
+        </div>
+      </div>
+
+      <div class="section-title">
+        <span>03</span>
+        <h2>Datas</h2>
+      </div>
+
+      <div class="grid three">
+        <div>
+          <label>Data de início</label>
+          <input id="dataInicio" type="date" />
+        </div>
+        <div>
+          <label>Data do contrato</label>
+          <input id="dataContrato" type="date" />
+        </div>
+        <div>
+          <label>Cidade de assinatura</label>
+          <input id="cidadeAssinatura" value="Araraquara/SP" />
+        </div>
+      </div>
+
+      <label>Observações / cláusula personalizada</label>
+      <textarea id="observacoes" placeholder="Opcional. Ex: serviço adicional, condição especial, detalhe combinado com o cliente..."></textarea>
+
+      <div class="actions">
+        <button type="button" class="btn primary" id="gerarContrato">Gerar contrato</button>
+        <button type="button" class="btn secondary" id="salvarPdf">Salvar em PDF</button>
+        <button type="button" class="btn ghost" id="whatsapp">WhatsApp</button>
+        <button type="button" class="btn danger" id="limpar">Limpar</button>
+      </div>
+      <p class="note">Dica: primeiro clique em “Gerar contrato”, revise a prévia e só depois salve em PDF.</p>
+    </section>
+
+    <section class="panel preview-panel">
+      <div class="preview-head">
+        <div>
+          <p class="eyebrow">Prévia oficial</p>
+          <h2>Contrato gerado</h2>
+        </div>
+        <button type="button" class="btn ghost small" id="novoNumero">Novo nº</button>
+      </div>
+      <article id="contratoPreview" class="contract-paper"></article>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
