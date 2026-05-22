@@ -265,14 +265,16 @@ function formaPagamentoHtml(plano) {
     const venc = vencimentoTexto("vencimentoCheio", "vencimentoPersonalizado");
     return `<p>O pagamento mensal será realizado no valor de <strong>${moeda(plano.valor)}</strong>, com vencimento ${venc}, via PIX (Chave CNPJ: 39.385.385/0001-98), salvo acordo diverso entre as partes.</p>`;
   }
+
   const p1 = Math.round((plano.valor * 0.60) * 100) / 100;
   const p2 = Math.round((plano.valor - p1) * 100) / 100;
   const v1 = vencimentoTexto("vencimentoParcela1", "vencimentoParcela1Personalizado");
   const v2 = vencimentoTexto("vencimentoParcela2", "vencimentoParcela2Personalizado");
+
   return `<p>O pagamento mensal será dividido em duas parcelas dentro do mesmo mês, via PIX (Chave CNPJ: 39.385.385/0001-98), da seguinte forma:</p>
     <ul>
-      <li>1ª parcela: <strong>${moeda(p1)}</strong>, com vencimento ${v1}.</li>
-      <li>2ª parcela: <strong>${moeda(p2)}</strong>, com vencimento ${v2}.</li>
+      <li>1ª parcela: <strong>${moeda(p1)}</strong>, correspondente a 60% do valor mensal, com vencimento ${v1}.</li>
+      <li>2ª parcela: <strong>${moeda(p2)}</strong>, correspondente a 40% do valor mensal, com vencimento ${v2}.</li>
     </ul>`;
 }
 
@@ -317,17 +319,34 @@ function gerarContrato(alertar = true) {
     <h2>5. Da confidencialidade</h2>
     <p>As partes comprometem-se a manter sigilo sobre dados, estratégias, acessos, senhas, informações comerciais e quaisquer materiais compartilhados durante a execução deste contrato. A obrigação de confidencialidade permanecerá vigente por 2 (dois) anos após o encerramento da prestação dos serviços.</p>
 
-    <h2>6. Do valor e forma de pagamento</h2>
+    <h2>6. Dos alinhamentos, alterações e estratégia</h2>
+    <p><strong>6.1.</strong> A CONTRATADA compromete-se a atuar estrategicamente no fortalecimento da presença digital, posicionamento e percepção de valor da marca da CONTRATANTE, utilizando estratégias de marketing, comunicação e análise de mercado.</p>
+    <p><strong>6.2.</strong> Inclui-se neste processo a identificação e análise de concorrentes diretos e indiretos, estudo de referências do segmento e levantamento de estratégias relevantes que possam contribuir para melhoria de posicionamento, alcance, autoridade e resultados da CONTRATANTE.</p>
+    <p><strong>6.3.</strong> A CONTRATANTE declara ciência de que as estratégias aplicadas possuem caráter consultivo e estratégico, não representando promessa de faturamento, lucro ou resultados financeiros específicos.</p>
+    <p><strong>6.4.</strong> As partes reconhecem como válidos os alinhamentos, aprovações, solicitações, autorizações e promessas formalizadas através do aplicativo WhatsApp, desde que realizados pelos contatos previamente informados entre CONTRATANTE e CONTRATADA.</p>
+    <p><strong>6.5.</strong> Comprometem-se ambas as partes a cumprir integralmente os acordos, aprovações e responsabilidades assumidas por meio das conversas registradas na plataforma.</p>
+    <p><strong>6.6.</strong> A CONTRATANTE poderá solicitar até 03 (três) alterações/revisões por material enviado pela CONTRATADA, desde que respeitada a proposta inicialmente aprovada e solicitada.</p>
+    <p><strong>6.7.</strong> Solicitações que alterem completamente o conceito inicial, identidade visual, estrutura criativa ou direcionamento estratégico originalmente definido poderão ser consideradas como novo material, ficando sujeitas a novo prazo de entrega e/ou cobrança adicional.</p>
+    <p><strong>6.8.</strong> Alterações solicitadas após aprovação final poderão ser consideradas novos materiais.</p>
+    <p><strong>6.9.</strong> A CONTRATANTE reconhece a importância de realizar solicitações claras e objetivas no momento do briefing, visando maior agilidade, assertividade e qualidade na execução dos materiais.</p>
+    <p><strong>6.10.</strong> A CONTRATANTE compromete-se a enviar materiais, informações, acessos, imagens e aprovações necessárias para execução dos serviços dentro dos prazos solicitados pela CONTRATADA.</p>
+    <p><strong>6.11.</strong> A ausência de envio de materiais, informações ou aprovações poderá impactar diretamente nos prazos de entrega, isentando a CONTRATADA de responsabilidade sobre atrasos decorrentes da falta de retorno da CONTRATANTE.</p>
+    <p><strong>6.12.</strong> Caso a CONTRATANTE permaneça sem retorno ou aprovação por período superior a 07 (sete) dias corridos, a CONTRATADA poderá reorganizar o cronograma de entregas conforme disponibilidade operacional.</p>
+    <p><strong>6.13.</strong> A CONTRATADA poderá utilizar ferramentas de automação, inteligência artificial, softwares de edição, análise estratégica e plataformas auxiliares para otimização dos serviços prestados, mantendo o compromisso de qualidade, originalidade e estratégia dos materiais entregues.</p>
+    <p><strong>6.14.</strong> A CONTRATANTE responsabiliza-se integralmente pela guarda e segurança dos acessos fornecidos às plataformas digitais, isentando a CONTRATADA de responsabilidades decorrentes de acessos indevidos por terceiros, vazamentos, invasões ou problemas originados fora de sua atuação direta.</p>
+    <p><strong>6.15.</strong> Na ausência de manifestação da CONTRATANTE em até 48 (quarenta e oito) horas após envio de material para aprovação, a CONTRATADA poderá considerar o material aprovado para fins de continuidade operacional e cumprimento de cronograma.</p>
+
+    <h2>7. Do valor e forma de pagamento</h2>
     <p>Pela prestação dos serviços, a CONTRATANTE pagará à CONTRATADA o valor mensal de <strong>${moeda(plano.valor)}</strong>.</p>
     ${formaPagamentoHtml(plano)}
     <p>Custos de mídia, impulsionamentos, taxas, impostos, plataformas, domínios, hospedagens, ferramentas externas e demais despesas de terceiros não estão inclusos no valor mensal, salvo quando expressamente descrito em observações contratuais.</p>
 
-    <h2>7. Do prazo e cancelamento</h2>
+    <h2>8. Do prazo e cancelamento</h2>
     ${fidelizacaoHtml(plano)}
 
-    ${observacoes ? `<h2>8. Observações adicionais</h2><p class="obs">${observacoes.replace(/\n/g, "<br>")}</p>` : ""}
+    ${observacoes ? `<h2>9. Observações adicionais</h2><p class="obs">${observacoes.replace(/\n/g, "<br>")}</p>` : ""}
 
-    <h2>${observacoes ? "9" : "8"}. Do foro</h2>
+    <h2>${observacoes ? "10" : "9"}. Do foro</h2>
     <p>As partes elegem o foro da Comarca de Araraquara/SP para dirimir quaisquer controvérsias oriundas deste contrato, com renúncia expressa a qualquer outro, por mais privilegiado que seja.</p>
 
     <p style="margin-top: 34px;">${cidadeAssinatura}, ${dataContrato}</p>
