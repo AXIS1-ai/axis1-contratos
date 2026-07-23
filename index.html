@@ -1,55 +1,262 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AXIS HUB Premium</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Gerador de contratos da AXIS 1 Marketing Estratégico" />
+  <title>AXIS 1 | Gerador de Contratos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-<div class="sidebar">
-<h2>🚀 AXIS HUB</h2>
-<ul>
-<li class="active">🏠 Dashboard</li>
-<li>📅 Agenda</li>
-<li>👥 Clientes</li>
-<li>💡 Ideias</li>
-<li>⚙️ Configurações</li>
-</ul>
-</div>
+  <main class="app-shell">
+    <aside class="panel no-print">
+      <div class="brand">
+        <div class="brand-mark">A1</div>
+        <div>
+          <strong>AXIS 1</strong>
+          <span>Gerador de Contratos</span>
+        </div>
+      </div>
 
-<div class="content">
-<div class="hero">
-<h1>Marketing Operating System</h1>
-<p>Central de produção da AXIS 1</p>
-</div>
+      <form id="contractForm" autocomplete="on">
+        <section class="form-section">
+          <h2>Contrato</h2>
+          <div class="form-grid two">
+            <label>
+              Número
+              <input id="contractNumber" type="text" autocomplete="off" />
+            </label>
+            <label>
+              Data do contrato
+              <input id="contractDate" type="date" required />
+            </label>
+          </div>
 
-<div class="cards">
-<div class="card">
-<h3>🔥 Hoje</h3>
-<p>AXIS 1<br>AccessoriuM<br>Vanessa Dias<br>Fabio</p>
-</div>
+          <label>
+            Plano contratado
+            <select id="plan" required>
+              <option value="essencial">Plano Essencial</option>
+              <option value="estrategico">Plano Estratégico</option>
+              <option value="autoridade">Plano Autoridade</option>
+            </select>
+          </label>
 
-<div class="card">
-<h3>⏭️ Amanhã</h3>
-<p>AXIS 1<br>Four Team<br>Libélula<br>Capi Café</p>
-</div>
-</div>
+          <div class="form-grid two">
+            <label>
+              Valor mensal
+              <input id="monthlyValue" type="text" inputmode="decimal" required autocomplete="off" />
+            </label>
+            <label>
+              Vencimento
+              <select id="dueDay">
+                <option value="5">Dia 5</option>
+                <option value="10">Dia 10</option>
+                <option value="20">Dia 20</option>
+              </select>
+            </label>
+          </div>
 
-<div class="agenda">
-<h2>📅 Agenda Semanal</h2>
-<table>
-<tr><th>SEG</th><th>TER</th><th>QUA</th><th>QUI</th><th>SEX</th><th>SAB</th></tr>
-<tr>
-<td>AXIS 1<br>AccessoriuM<br>Vanessa<br>Fabio<br>Toq House<br>NuVitta</td>
-<td>AXIS 1<br>AccessoriuM<br>Vanessa<br>Four Team<br>Libélula<br>NuVitta<br>Capi Café</td>
-<td>AXIS 1<br>AccessoriuM<br>Vanessa<br>Fabio<br>NuVitta</td>
-<td>AXIS 1<br>AccessoriuM<br>Vanessa<br>Fabio<br>Libélula<br>Capi Café</td>
-<td>AXIS 1<br>AccessoriuM<br>Toq House<br>Four Team<br>Libélula<br>NuVitta<br>Capi Café</td>
-<td>Libélula</td>
-</tr>
-</table>
-</div>
-</div>
+          <label>
+            Data de início
+            <input id="startDate" type="date" required />
+          </label>
+        </section>
+
+        <section class="form-section">
+          <h2>Contratante</h2>
+          <label>
+            Nome ou razão social
+              <input id="clientName" type="text" required autocomplete="organization" />
+          </label>
+
+          <div class="form-grid two">
+            <label>
+              CPF ou CNPJ
+              <input id="clientDocument" type="text" required autocomplete="off" />
+            </label>
+            <label>
+              WhatsApp
+              <input id="clientPhone" type="tel" required autocomplete="tel" />
+            </label>
+          </div>
+
+          <label>
+            E-mail
+            <input id="clientEmail" type="email" required autocomplete="email" />
+          </label>
+
+          <label>
+            Endereço completo
+            <textarea id="clientAddress" rows="3" required autocomplete="street-address"></textarea>
+          </label>
+        </section>
+
+        <section class="form-section">
+          <h2>Condições</h2>
+          <div class="form-grid two">
+            <label>
+              Revisões por material
+              <input id="revisionLimit" type="number" min="0" value="3" />
+            </label>
+            <label>
+              Aprovação automática
+              <select id="approvalHours">
+                <option value="24">24 horas</option>
+                <option value="48" selected>48 horas</option>
+                <option value="72">72 horas</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="form-grid two">
+            <label>
+              Ausência para reorganização
+              <input id="silenceDays" type="number" min="1" value="7" />
+            </label>
+            <label>
+              Aviso de cancelamento
+              <input id="cancelNoticeDays" type="number" min="1" value="10" />
+            </label>
+          </div>
+
+          <div class="form-grid two">
+            <label>
+              Multa por atraso (%)
+              <input id="lateFee" type="number" min="0" step="0.01" value="2" />
+            </label>
+            <label>
+              Juros ao mês (%)
+              <input id="monthlyInterest" type="number" min="0" step="0.01" value="1" />
+            </label>
+          </div>
+
+          <label>
+            Observações adicionais
+            <textarea id="additionalNotes" rows="5" placeholder="Opcional"></textarea>
+          </label>
+        </section>
+
+        <div class="actions">
+          <button type="button" id="generateBtn" class="primary" aria-label="Atualizar prévia do contrato">Atualizar contrato</button>
+          <button type="button" id="printBtn" aria-label="Abrir impressão para salvar em PDF">Salvar em PDF</button>
+          <button type="button" id="resetBtn" class="ghost" aria-label="Limpar formulário e iniciar novo contrato">Limpar</button>
+        </div>
+      </form>
+    </aside>
+
+    <section class="preview-area">
+      <article id="contract" class="contract" aria-label="Prévia do contrato" aria-live="polite">
+        <header class="contract-header">
+          <div>
+            <div class="contract-brand">AXIS 1</div>
+            <div class="contract-brand-sub">MARKETING ESTRATÉGICO</div>
+          </div>
+          <div class="contract-number" id="viewContractNumber"></div>
+        </header>
+
+        <h1>CONTRATO DE PRESTAÇÃO DE SERVIÇOS DE MARKETING DIGITAL</h1>
+
+        <section>
+          <h2>1. QUALIFICAÇÃO DAS PARTES</h2>
+          <p><strong>CONTRATADA:</strong> AXIS 1 MARKETING ESTRATÉGICO, pessoa jurídica de direito privado, inscrita no CNPJ sob o nº 39.385.385/0001-98, com sede em Araraquara/SP, e-mail: falecom.axis1@gmail.com, telefone/WhatsApp: (16) 99742-4912, doravante denominada simplesmente <strong>CONTRATADA</strong>.</p>
+          <p><strong>CONTRATANTE:</strong> <span data-view="clientName"></span>, inscrita no CPF/CNPJ sob o nº <span data-view="clientDocument"></span>, com sede/endereço em <span data-view="clientAddress"></span>, telefone/WhatsApp: <span data-view="clientPhone"></span>, e-mail: <span data-view="clientEmail"></span>, doravante denominada simplesmente <strong>CONTRATANTE</strong>.</p>
+        </section>
+
+        <section>
+          <h2>2. DO OBJETO</h2>
+          <p>O presente contrato tem como objeto a prestação de serviços de marketing digital por parte da CONTRATADA à CONTRATANTE, conforme o plano abaixo:</p>
+          <p><strong>Plano contratado:</strong> <span data-view="planName"></span><br />
+          <strong>Data de início dos serviços:</strong> <span data-view="startDate"></span></p>
+          <div id="planScope" class="scope"></div>
+          <p class="note"><strong>Importante:</strong> serviços não previstos expressamente no escopo do plano contratado deverão ser previamente orçados e aprovados pela CONTRATANTE.</p>
+        </section>
+
+        <section>
+          <h2>3. DAS RESPONSABILIDADES</h2>
+          <p><strong>3.1.</strong> A CONTRATADA compromete-se a executar os serviços com zelo, ética e profissionalismo, respeitando a identidade visual, o posicionamento e as informações fornecidas pela CONTRATANTE.</p>
+          <p><strong>3.2.</strong> A CONTRATANTE compromete-se a fornecer todas as informações necessárias à execução dos serviços, sendo responsável pela veracidade dos dados, aprovações e direitos de uso de materiais, imagens, marcas, acessos e conteúdos enviados.</p>
+          <p><strong>3.3.</strong> A CONTRATADA poderá recusar solicitações que violem legislação, direitos autorais, direitos de terceiros, normas éticas ou políticas das plataformas digitais.</p>
+        </section>
+
+        <section>
+          <h2>4. DA PROPRIEDADE INTELECTUAL E PORTFÓLIO</h2>
+          <p><strong>4.1.</strong> Os materiais finais entregues e devidamente quitados serão de propriedade da CONTRATANTE, respeitadas as licenças de fontes, bancos de imagem, trilhas, softwares e demais recursos de terceiros.</p>
+          <p><strong>4.2.</strong> Arquivos editáveis, arquivos-fonte, projetos, estruturas internas, métodos, processos, prompts, modelos, bibliotecas, automações e materiais de produção permanecerão como propriedade intelectual da CONTRATADA, salvo contratação expressa em sentido diverso.</p>
+          <p><strong>4.3.</strong> A CONTRATADA poderá utilizar os materiais produzidos em seu portfólio e canais de divulgação, salvo oposição expressa da CONTRATANTE.</p>
+        </section>
+
+        <section>
+          <h2>5. DA CONFIDENCIALIDADE</h2>
+          <p>As partes comprometem-se a manter sigilo sobre dados, estratégias, acessos, senhas, informações comerciais e quaisquer materiais compartilhados durante a execução deste contrato. A obrigação de confidencialidade permanecerá vigente por 2 (dois) anos após o encerramento da prestação dos serviços.</p>
+        </section>
+
+        <section>
+          <h2>6. DOS ALINHAMENTOS, ALTERAÇÕES E ESTRATÉGIA</h2>
+          <p><strong>6.1.</strong> A CONTRATADA compromete-se a atuar estrategicamente no fortalecimento da presença digital, posicionamento e percepção de valor da marca da CONTRATANTE, utilizando estratégias de marketing, comunicação e análise de mercado.</p>
+          <p><strong>6.2.</strong> Inclui-se neste processo a identificação e análise de concorrentes diretos e indiretos, estudo de referências do segmento e levantamento de estratégias relevantes.</p>
+          <p><strong>6.3.</strong> A CONTRATANTE declara ciência de que as estratégias aplicadas possuem caráter consultivo e estratégico, não representando promessa de faturamento, lucro, alcance, vendas ou resultados financeiros específicos.</p>
+          <p><strong>6.4.</strong> As partes reconhecem como válidos os alinhamentos, aprovações, solicitações, autorizações e promessas formalizadas por WhatsApp ou e-mail, desde que realizadas pelos contatos informados entre as partes.</p>
+          <p><strong>6.5.</strong> Comprometem-se ambas as partes a cumprir integralmente os acordos, aprovações e responsabilidades assumidas por meio das conversas registradas.</p>
+          <p><strong>6.6.</strong> A CONTRATANTE poderá solicitar até <span data-view="revisionLimit"></span> alterações ou revisões por material, desde que respeitada a proposta inicialmente aprovada.</p>
+          <p><strong>6.7.</strong> Solicitações que alterem completamente o conceito inicial, identidade visual, estrutura criativa ou direcionamento estratégico poderão ser consideradas novo material, sujeitas a novo prazo e/ou cobrança adicional.</p>
+          <p><strong>6.8.</strong> Alterações solicitadas após aprovação final poderão ser consideradas novos materiais.</p>
+          <p><strong>6.9.</strong> A CONTRATANTE reconhece a importância de realizar solicitações claras e objetivas no briefing.</p>
+          <p><strong>6.10.</strong> A CONTRATANTE compromete-se a enviar materiais, informações, acessos, imagens e aprovações dentro dos prazos solicitados.</p>
+          <p><strong>6.11.</strong> A ausência de envio de materiais, informações ou aprovações poderá impactar os prazos de entrega, isentando a CONTRATADA de responsabilidade pelos atrasos decorrentes da falta de retorno.</p>
+          <p><strong>6.12.</strong> Caso a CONTRATANTE permaneça sem retorno por período superior a <span data-view="silenceDays"></span> dias corridos, a CONTRATADA poderá pausar os serviços e reorganizar o cronograma conforme sua disponibilidade operacional, sem obrigação de reposição imediata das datas originalmente previstas.</p>
+          <p><strong>6.13.</strong> A CONTRATADA poderá utilizar ferramentas de automação, inteligência artificial, softwares de edição, análise estratégica e plataformas auxiliares, mantendo o compromisso com a qualidade e a estratégia.</p>
+          <p><strong>6.14.</strong> A CONTRATANTE responsabiliza-se pela guarda e segurança dos acessos fornecidos às plataformas digitais, isentando a CONTRATADA de responsabilidades decorrentes de acessos indevidos, vazamentos, invasões ou problemas originados fora de sua atuação direta.</p>
+          <p><strong>6.15.</strong> Na ausência de manifestação da CONTRATANTE em até <span data-view="approvalHours"></span> horas após o envio de material para aprovação, a CONTRATADA poderá considerá-lo aprovado para fins de continuidade operacional e cumprimento do cronograma.</p>
+          <p><strong>6.16.</strong> A CONTRATADA não se responsabiliza por alterações de algoritmos, instabilidades, indisponibilidades, bloqueios, suspensões, restrições, perda de alcance ou decisões tomadas por plataformas como Meta, Instagram, Facebook, Google, LinkedIn, TikTok ou serviços de terceiros.</p>
+        </section>
+
+        <section>
+          <h2>7. DO VALOR E FORMA DE PAGAMENTO</h2>
+          <p>Pela prestação dos serviços, a CONTRATANTE pagará à CONTRATADA o valor mensal de <strong><span data-view="monthlyValue"></span></strong>.</p>
+          <p>O pagamento será realizado com vencimento todo dia <strong><span data-view="dueDay"></span></strong>, via PIX, chave CNPJ <strong>39.385.385/0001-98</strong>, salvo acordo diverso formalizado entre as partes.</p>
+          <p>Custos de mídia, impulsionamentos, taxas, impostos, plataformas, domínios, hospedagens, ferramentas externas e demais despesas de terceiros não estão inclusos no valor mensal, salvo quando expressamente descritos nas observações contratuais.</p>
+          <p>Em caso de atraso, poderá incidir multa moratória de <span data-view="lateFee"></span>% sobre o valor devido, acrescida de juros de <span data-view="monthlyInterest"></span>% ao mês, calculados proporcionalmente aos dias de atraso.</p>
+          <p>A CONTRATADA poderá suspender a execução e a publicação dos serviços enquanto houver valores vencidos e não pagos, sem que isso configure descumprimento contratual.</p>
+        </section>
+
+        <section>
+          <h2>8. DO PRAZO E CANCELAMENTO</h2>
+          <p>O presente contrato é firmado por prazo indeterminado, sem fidelização, sem carência e livre de multa por fidelidade.</p>
+          <p>Qualquer das partes poderá solicitar o cancelamento mediante aviso prévio por escrito com antecedência mínima de <span data-view="cancelNoticeDays"></span> dias da data do próximo vencimento.</p>
+          <p>Os serviços e valores já executados, vencidos, aprovados ou iniciados até a data efetiva do encerramento permanecerão devidos.</p>
+        </section>
+
+        <section id="notesSection">
+          <h2>9. OBSERVAÇÕES ADICIONAIS</h2>
+          <p id="viewAdditionalNotes">Não há observações adicionais.</p>
+        </section>
+
+        <section>
+          <h2>10. DO FORO</h2>
+          <p>As partes elegem o foro da Comarca de Araraquara/SP para dirimir quaisquer controvérsias oriundas deste contrato, com renúncia expressa a qualquer outro, por mais privilegiado que seja.</p>
+        </section>
+
+        <p class="location-date">Araraquara/SP, <span data-view="contractDate"></span>.</p>
+
+        <div class="signatures">
+          <div>
+            <span></span>
+            <strong>AXIS 1 MARKETING ESTRATÉGICO</strong>
+            <small>CONTRATADA</small>
+          </div>
+          <div>
+            <span></span>
+            <strong data-view="clientName"></strong>
+            <small>CONTRATANTE</small>
+          </div>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
 </body>
 </html>

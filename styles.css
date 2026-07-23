@@ -1,0 +1,311 @@
+:root {
+  --bg: #0c0d0f;
+  --panel: #141518;
+  --paper: #ffffff;
+  --text: #17181b;
+  --muted: #6c7078;
+  --line: #d9dce2;
+  --gold: #b68a3f;
+  --gold-2: #d2aa62;
+  --input: #1d1f23;
+}
+
+* { box-sizing: border-box; }
+
+html { color-scheme: dark; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: #f5f5f5;
+  font-family: Inter, Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+button, input, select, textarea { font: inherit; }
+
+button { min-height: 44px; }
+
+.app-shell {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: minmax(320px, 430px) 1fr;
+}
+
+.panel {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  padding: 24px;
+  background: linear-gradient(180deg, #151619 0%, #0f1012 100%);
+  border-right: 1px solid rgba(255,255,255,.08);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.brand-mark {
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--gold);
+  color: var(--gold-2);
+  font-family: Montserrat, sans-serif;
+  font-weight: 800;
+}
+
+.brand strong { display: block; font: 800 20px Montserrat, sans-serif; }
+.brand span { display: block; color: #a9adb5; font-size: 13px; margin-top: 2px; }
+
+.form-section {
+  padding: 18px 0;
+  border-top: 1px solid rgba(255,255,255,.08);
+}
+
+.form-section h2 {
+  margin: 0 0 14px;
+  font-size: 15px;
+  color: var(--gold-2);
+}
+
+label {
+  display: block;
+  margin-bottom: 13px;
+  color: #c5c8ce;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+input, select, textarea {
+  width: 100%;
+  margin-top: 6px;
+  padding: 11px 12px;
+  color: white;
+  background: var(--input);
+  border: 1px solid #30333a;
+  border-radius: 8px;
+  outline: none;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(182,138,63,.12);
+}
+
+textarea { resize: vertical; }
+
+button:hover {
+  border-color: var(--gold-2);
+}
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid rgba(210,170,98,.4);
+  outline-offset: 2px;
+}
+
+.form-grid {
+  display: grid;
+  gap: 12px;
+}
+
+.form-grid.two { grid-template-columns: 1fr 1fr; }
+
+.actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  padding: 18px 0 40px;
+}
+
+.actions button {
+  padding: 12px;
+  border: 1px solid #34363c;
+  border-radius: 8px;
+  color: white;
+  background: #212329;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.actions .primary {
+  border-color: var(--gold);
+  color: #111;
+  background: linear-gradient(135deg, var(--gold-2), var(--gold));
+}
+
+.actions .ghost { grid-column: 1 / -1; background: transparent; }
+
+.preview-area {
+  padding: 38px;
+  overflow: auto;
+  background:
+    radial-gradient(circle at top right, rgba(182,138,63,.08), transparent 28%),
+    #0c0d0f;
+}
+
+.contract {
+  width: 210mm;
+  min-height: 297mm;
+  margin: 0 auto;
+  padding: 20mm 18mm;
+  color: var(--text);
+  background: var(--paper);
+  box-shadow: 0 18px 70px rgba(0,0,0,.45);
+  font-size: 10.5pt;
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+}
+
+.contract-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding-bottom: 16px;
+  border-bottom: 2px solid #17181b;
+}
+
+.contract-brand {
+  font: 800 24px Montserrat, sans-serif;
+  letter-spacing: .04em;
+}
+
+.contract-brand-sub {
+  margin-top: 2px;
+  font-size: 8px;
+  letter-spacing: .22em;
+  color: var(--gold);
+  font-weight: 700;
+}
+
+.contract-number {
+  font-size: 9pt;
+  color: var(--muted);
+}
+
+.contract h1 {
+  max-width: 620px;
+  margin: 28px 0;
+  font: 800 20pt/1.15 Montserrat, sans-serif;
+  letter-spacing: -.025em;
+}
+
+.contract section { break-inside: auto; }
+
+.contract h2 {
+  margin: 25px 0 10px;
+  font: 800 11.5pt Montserrat, sans-serif;
+  letter-spacing: .02em;
+  border-left: 3px solid var(--gold);
+  padding-left: 9px;
+}
+
+.contract p {
+  margin: 7px 0;
+  text-align: justify;
+}
+
+.scope {
+  margin: 12px 0;
+  padding: 14px 16px;
+  background: #f5f3ef;
+  border: 1px solid #e5ded1;
+}
+
+.scope h3 {
+  margin: 12px 0 5px;
+  font-size: 10.5pt;
+}
+
+.scope h3:first-child { margin-top: 0; }
+.scope ul { margin: 5px 0 10px 18px; padding: 0; }
+.scope li { margin: 3px 0; }
+
+.note {
+  padding: 10px 12px;
+  border-left: 3px solid var(--gold);
+  background: #faf8f4;
+}
+
+.location-date {
+  margin-top: 30px !important;
+  text-align: left !important;
+}
+
+.signatures {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  margin-top: 58px;
+  text-align: center;
+}
+
+.signatures span {
+  display: block;
+  border-top: 1px solid #333;
+  margin-bottom: 8px;
+}
+
+.signatures strong {
+  display: block;
+  font-size: 9pt;
+}
+
+.signatures small {
+  display: block;
+  margin-top: 3px;
+  color: var(--muted);
+}
+
+@media (max-width: 1100px) {
+  .app-shell { grid-template-columns: 1fr; }
+  .panel { position: relative; height: auto; }
+  .preview-area { padding: 18px; }
+  .contract { width: 100%; max-width: 210mm; min-height: auto; padding: 34px; }
+}
+
+@media (max-width: 600px) {
+  .form-grid.two, .actions, .signatures { grid-template-columns: 1fr; }
+  .actions .ghost { grid-column: auto; }
+  .panel { padding: 18px; }
+  .preview-area { padding: 0; }
+  .contract { padding: 24px 18px; font-size: 9.5pt; box-shadow: none; }
+  .contract h1 { font-size: 17pt; }
+  .contract-header { gap: 18px; }
+  .contract-number { text-align: right; }
+}
+
+@page {
+  size: A4;
+  margin: 16mm;
+}
+
+@media print {
+  html { color-scheme: light; }
+  body { background: white; }
+  .no-print { display: none !important; }
+  .app-shell { display: block; }
+  .preview-area { padding: 0; background: white; overflow: visible; }
+  .contract {
+    width: auto;
+    min-height: auto;
+    margin: 0;
+    padding: 0;
+    box-shadow: none;
+    font-size: 10pt;
+  }
+  .contract-header { margin-top: 0; }
+  .contract h1 { font-size: 18pt; }
+  .contract h2, .scope, .signatures, .note { break-inside: avoid; page-break-inside: avoid; }
+  .contract h2 { break-after: avoid; page-break-after: avoid; }
+  .contract p, .contract li { orphans: 3; widows: 3; }
+  .scope { background: #fff; }
+}

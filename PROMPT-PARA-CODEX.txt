@@ -1,0 +1,41 @@
+Implemente e revise este projeto de gerador de contratos da AXIS 1.
+
+Requisitos obrigatórios:
+1. Manter o projeto estático, funcionando em GitHub Pages, sem backend.
+2. Preservar os três planos:
+   - Essencial: R$ 349,90.
+   - Estratégico: R$ 549,90.
+   - Autoridade: valor editável pelo usuário.
+3. No Plano Autoridade, landing pages e sites incluem SOMENTE gestão, acompanhamento e otimizações na estrutura existente. Criação, desenvolvimento, redesign ou alterações estruturais não estão inclusos.
+4. Manter as cláusulas do contrato da Capi Cafeteria como base:
+   - qualificação das partes;
+   - objeto;
+   - responsabilidades;
+   - propriedade intelectual e portfólio;
+   - confidencialidade;
+   - estratégia sem garantia de resultado;
+   - alinhamentos válidos por WhatsApp e e-mail;
+   - limite de revisões;
+   - novo orçamento para mudança completa de briefing;
+   - impacto de atrasos do cliente;
+   - aprovação automática;
+   - uso de IA e ferramentas profissionais;
+   - responsabilidade pelos acessos;
+   - pagamento;
+   - custos de terceiros;
+   - prazo indeterminado;
+   - ausência de fidelização;
+   - cancelamento;
+   - foro de Araraquara/SP.
+5. Manter também:
+   - multa e juros editáveis;
+   - suspensão por inadimplência;
+   - limitação de responsabilidade por plataformas;
+   - arquivos editáveis e arquivos-fonte pertencentes à AXIS 1;
+   - serviços fora do escopo cobrados separadamente;
+   - numeração automática;
+   - salvamento temporário no localStorage;
+   - impressão em A4 com boa paginação.
+6. Não adicionar frameworks ou dependências de build.
+7. Corrigir bugs de responsividade, segurança de HTML, acessibilidade e impressão.
+8. Entregar os arquivos finais completos, sem trechos omitidos.
