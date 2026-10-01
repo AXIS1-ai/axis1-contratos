@@ -119,6 +119,22 @@ textarea:focus-visible {
 
 .form-grid.two { grid-template-columns: 1fr 1fr; }
 
+.channel-section { margin: 0; padding: 14px 0 8px; }
+.choice {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin: 0 0 10px;
+  color: #e2e3e6;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+}
+.choice input { width: 17px; height: 17px; margin: 0; accent-color: var(--gold-2); }
+.form-hint { margin: 10px 0 0; color: var(--gold-2); font-size: 12px; font-weight: 700; }
+.paid-media-section { margin: 0; padding: 14px 0; border: 0; border-top: 1px solid rgba(255,255,255,.08); }
+.paid-media-section legend { padding: 0 0 12px; color: var(--gold-2); font-size: 15px; font-weight: 700; }
+
 .actions {
   display: grid;
   grid-template-columns: 1fr 1fr;

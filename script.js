@@ -6,7 +6,7 @@ const planos = {
     descricao: `
       <p><strong>Criação de Conteúdo</strong></p>
       <ul>
-        <li>8 posts mensais, sendo imagens ou vídeos.</li>
+        <li>8 conteúdos mensais, entre imagens e vídeos.</li>
         <li>Artes profissionais alinhadas à identidade da marca.</li>
       </ul>
       <p><strong>Gestão Completa do Perfil</strong></p>
@@ -20,10 +20,9 @@ const planos = {
         <li>Criação e gestão de anúncios.</li>
         <li>Estratégias focadas em atrair novos clientes.</li>
       </ul>
-      <p><strong>Relatórios de Resultados</strong></p>
+      <p><strong>Acompanhamento dos serviços</strong></p>
       <ul>
-        <li>Relatórios simples, claros e objetivos.</li>
-        <li>Acompanhamento da evolução do perfil e campanhas.</li>
+        <li>Acompanhamento da evolução do perfil e das ações contratadas.</li>
       </ul>`
   },
   estrategico: {
@@ -33,24 +32,14 @@ const planos = {
     descricao: `
       <p><strong>Conteúdo Estratégico Ampliado</strong></p>
       <ul>
-        <li>12 posts mensais.</li>
+        <li>12 criativos mensais.</li>
         <li>Conteúdos planejados para alcance, autoridade e conversão.</li>
       </ul>
-      <p><strong>Gestão Completa das Redes Sociais</strong></p>
+      <p><strong>Gestão dos canais contratados</strong></p>
       <ul>
         <li>Criação de textos estratégicos.</li>
-        <li>Padronização e otimização do perfil.</li>
+        <li>Padronização e otimização dos canais selecionados.</li>
         <li>Publicação e organização dos conteúdos.</li>
-      </ul>
-      <p><strong>Presença no Google ou LinkedIn</strong></p>
-      <ul>
-        <li>Configuração e otimização do perfil.</li>
-        <li>Melhor posicionamento para ser encontrado por novos clientes.</li>
-      </ul>
-      <p><strong>Tráfego Pago Estratégico</strong></p>
-      <ul>
-        <li>Direcionamento de campanhas.</li>
-        <li>Gestão de anúncios focada em geração de clientes.</li>
       </ul>
       <p><strong>Planejamento Estratégico</strong></p>
       <ul>
@@ -60,7 +49,6 @@ const planos = {
       <p><strong>Análise e Crescimento</strong></p>
       <ul>
         <li>Análise de métricas e desempenho.</li>
-        <li>Relatórios claros e objetivos.</li>
         <li>1 reunião estratégica mensal para ajustes e evolução.</li>
       </ul>`
   },
@@ -259,6 +247,23 @@ function coletarDadosCliente() {
   };
 }
 
+function descricaoEstrategicoLegado() {
+  const canais = [
+    ["meta", "Meta — Facebook e Instagram"],
+    ["google", "Google — Google Meu Negócio"],
+    ["tiktok", "TikTok"],
+    ["linkedin", "LinkedIn"]
+  ].filter(([key]) => $("canal_" + key)?.checked).map(([, label]) => label);
+  const count = canais.includes("Meta — Facebook e Instagram")
+    ? (canais.length > 1 ? 12 : 16)
+    : null;
+  const metaAds = $("metaAds")?.checked;
+  return `<p><strong>Conteúdo estratégico ampliado</strong></p><ul>${count ? `<li>${count} criativos mensais.</li>` : ""}<li>Conteúdos planejados para atração, autoridade, posicionamento e conversão.</li></ul>
+    ${canais.length ? `<p><strong>Canais contratados</strong></p><ul>${canais.map(canal => `<li>${canal}</li>`).join("")}${canais.includes("Google — Google Meu Negócio") ? "<li>Gestão e otimização do Perfil da Empresa no Google (Google Meu Negócio).</li>" : ""}</ul>` : ""}
+    <p><strong>Planejamento Estratégico</strong></p><ul><li>Calendário mensal de conteúdo.</li><li>Definição estratégica das ações orgânicas.</li><li>1 reunião estratégica mensal para ajustes e evolução.</li></ul>
+    ${metaAds ? "<p><strong>Tráfego pago na Meta Ads</strong></p><ul><li>Direcionamento e gestão de campanhas de tráfego pago na Meta Ads. A verba de mídia não está inclusa no valor mensal.</li><li>Serão disponibilizados relatórios de desempenho referentes às campanhas de tráfego pago veiculadas na Meta Ads.</li></ul>" : ""}`;
+}
+
 function formaPagamentoHtml(plano) {
   const forma = $("formaPagamento").value;
   if (forma === "cheio") {
@@ -290,6 +295,7 @@ function fidelizacaoHtml(plano) {
 function gerarContrato(alertar = true) {
   const d = coletarDadosCliente();
   const plano = planos[$("plano").value];
+  const planoKey = $("plano").value;
   const observacoes = $("observacoes").value.trim();
   const inicio = dataExtenso($("dataInicio").value);
   const dataContrato = dataExtenso($("dataContrato").value);
@@ -300,14 +306,14 @@ function gerarContrato(alertar = true) {
     <h1>CONTRATO DE PRESTAÇÃO DE SERVIÇOS DE MARKETING DIGITAL</h1>
 
     <h2>1. Qualificação das partes</h2>
-    <p><strong>CONTRATADA:</strong> AXIS 1 MARKETING ESTRATÉGICO, pessoa jurídica de direito privado, inscrita no CNPJ sob o nº 39.385.385/0001-98, com sede em Araraquara/SP, e-mail: falecom.axis1@gmail.com, telefone/WhatsApp: (16) 99742-4912, doravante denominada simplesmente CONTRATADA.</p>
+    <p><strong>CONTRATADA:</strong> AXIS 1 MARKETING ESTRATÉGICO, pessoa jurídica de direito privado, inscrita no CNPJ sob o nº 39.385.385/0001-98, com sede em Araraquara/SP, e-mail: contato@somosaxis1.com, telefone/WhatsApp: (16) 99742-4912, doravante denominada simplesmente CONTRATADA.</p>
     <p><strong>CONTRATANTE:</strong> ${d.nomeCliente || "[NOME DO CLIENTE]"}, inscrita no CPF/CNPJ sob o nº ${d.cpfCnpj || "[CPF/CNPJ]"}, com sede/endereço em ${d.endereco || "[ENDEREÇO]"}, ${d.cidadeUf || "[CIDADE/UF]"}, CEP: ${d.cep || "[CEP]"}, telefone/WhatsApp: ${d.telefone || "[TELEFONE]"}, e-mail: ${d.email || "[E-MAIL]"}, doravante denominada simplesmente CONTRATANTE.</p>
 
     <h2>2. Do objeto</h2>
     <p>O presente contrato tem como objeto a prestação de serviços de marketing digital por parte da CONTRATADA à CONTRATANTE, conforme plano abaixo:</p>
     <p><strong>Plano contratado:</strong> ${plano.nome}</p>
     <p><strong>Data de início dos serviços:</strong> ${inicio}</p>
-    ${plano.descricao}
+    ${planoKey === "estrategico" ? descricaoEstrategicoLegado() : plano.descricao}
 
     <h2>3. Das responsabilidades</h2>
     <p><strong>3.1.</strong> A CONTRATADA compromete-se a executar os serviços com zelo, ética e profissionalismo, respeitando a identidade visual, o posicionamento e as informações fornecidas pela CONTRATANTE.</p>

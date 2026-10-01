@@ -26,12 +26,6 @@ const plans = {
           "Direcionamento estratégico para WhatsApp."
         ]
       },
-      {
-        title: "Acompanhamento básico",
-        items: [
-          "Relatório simples e objetivo."
-        ]
-      }
     ]
   },
   estrategico: {
@@ -41,40 +35,22 @@ const plans = {
       {
         title: "Conteúdo estratégico ampliado",
         items: [
-          "12 conteúdos mensais, incluindo até 4 vídeos.",
           "Conteúdos planejados para atração, autoridade, posicionamento e conversão."
         ]
       },
       {
-        title: "Gestão completa das redes sociais",
+        title: "Gestão dos canais contratados",
         items: [
           "Criação de textos e copies estratégicas.",
-          "Padronização e otimização do perfil.",
+          "Padronização e otimização dos canais selecionados.",
           "Publicação, organização e acompanhamento dos conteúdos."
         ]
       },
       {
-        title: "Presença no Google ou LinkedIn",
-        items: [
-          "Configuração e otimização do perfil.",
-          "Estratégias para melhor posicionamento e descoberta por novos clientes."
-        ]
-      },
-      {
-        title: "Tráfego pago estratégico",
-        items: [
-          "Direcionamento e gestão de campanhas no Google Ads e Meta Ads.",
-          "Gestão de anúncios com foco em geração de oportunidades e clientes.",
-          "A verba de mídia não está inclusa no valor mensal."
-        ]
-      },
-      {
-        title: "Planejamento, análise e crescimento",
+        title: "Planejamento e acompanhamento",
         items: [
           "Planejamento estratégico e calendário mensal de conteúdo.",
-          "Definição de ações e campanhas.",
-          "Análise de métricas e desempenho.",
-          "Relatórios claros e objetivos.",
+          "Definição de ações orgânicas e análise estratégica dos conteúdos.",
           "1 reunião estratégica mensal."
         ]
       }
@@ -104,7 +80,7 @@ const plans = {
       {
         title: "Aquisição e presença digital",
         items: [
-          "Gestão de tráfego pago no Google Ads e Meta Ads.",
+          "Gestão de tráfego pago na Meta Ads, quando contratada.",
           "Gestão e otimização do Google Meu Negócio.",
           "A verba de mídia não está inclusa no valor mensal."
         ]
@@ -121,7 +97,7 @@ const plans = {
         items: [
           "Criação de materiais digitais e peças para impressão, como cartão, flyer, outdoor e cardápio, dentro do planejamento contratado.",
           "Impressão, produção gráfica e custos de fornecedores não estão inclusos.",
-          "Relatórios completos, reuniões estratégicas mensais e acompanhamento contínuo."
+          "Reuniões estratégicas mensais e acompanhamento contínuo."
         ]
       }
     ]
@@ -207,6 +183,78 @@ function renderPlanScope(planKey) {
   });
 }
 
+const channelLabels = {
+  meta: "Meta — Facebook e Instagram",
+  google: "Google — Google Meu Negócio",
+  tiktok: "TikTok",
+  linkedin: "LinkedIn"
+};
+
+function selectedChannels() {
+  return [...document.querySelectorAll('input[name="channels"]:checked')].map(input => input.value);
+}
+
+function creativeCount(channels) {
+  if (!channels.includes("meta")) return null;
+  return channels.some(channel => channel !== "meta") ? 12 : 16;
+}
+
+function renderStrategicScope() {
+  const scope = $("planScope");
+  scope.replaceChildren();
+  const channels = selectedChannels();
+  const count = creativeCount(channels);
+  const groups = [
+    {
+      title: "Conteúdo estratégico ampliado",
+      items: [
+        ...(count ? [`${count} criativos mensais.`] : []),
+        "Conteúdos planejados para atração, autoridade, posicionamento e conversão."
+      ]
+    },
+    {
+      title: "Gestão dos canais contratados",
+      items: [
+        ...channels.map(channel => channelLabels[channel]),
+        "Criação de textos e copies estratégicas.",
+        "Padronização, otimização, publicação e organização dos conteúdos nos canais selecionados."
+      ]
+    },
+    {
+      title: "Planejamento e acompanhamento",
+      items: [
+        "Planejamento estratégico e calendário mensal de conteúdo.",
+        "Definição de ações orgânicas e análise estratégica dos conteúdos.",
+        "1 reunião estratégica mensal."
+      ]
+    }
+  ];
+
+  if (channels.includes("google")) {
+    groups[1].items.push("Gestão e otimização do Perfil da Empresa no Google (Google Meu Negócio).");
+  }
+  if (document.querySelector('input[name="metaAds"]:checked')?.value === "yes") {
+    groups.push({
+      title: "Tráfego pago na Meta Ads",
+      items: [
+        "Direcionamento e gestão de campanhas de tráfego pago na Meta Ads. A verba de mídia não está inclusa no valor mensal.",
+        "Serão disponibilizados relatórios de desempenho referentes às campanhas de tráfego pago veiculadas na Meta Ads."
+      ]
+    });
+  }
+  groups.forEach(group => {
+    const title = document.createElement("h3");
+    title.textContent = group.title;
+    const list = document.createElement("ul");
+    group.items.forEach(item => {
+      const listItem = document.createElement("li");
+      listItem.textContent = item.trim();
+      list.appendChild(listItem);
+    });
+    scope.append(title, list);
+  });
+}
+
 function updateTextViews(key, value) {
   document.querySelectorAll(`[data-view="${key}"]`).forEach(element => {
     element.textContent = value || "________________";
@@ -230,8 +278,17 @@ function updateContract() {
   $("viewAdditionalNotes").textContent =
     $("additionalNotes").value.trim() || "Não há observações adicionais.";
 
-  renderPlanScope($("plan").value);
+  if ($("plan").value === "estrategico") renderStrategicScope();
+  else renderPlanScope($("plan").value);
+  updateCreativeIndicator();
   saveForm();
+}
+
+function updateCreativeIndicator() {
+  const count = creativeCount(selectedChannels());
+  $("creativeQuantity").textContent = count
+    ? `Quantidade de criativos: ${count}/mês`
+    : "Quantidade de criativos: selecione Meta para calcular";
 }
 
 function setPlan(planKey, forceValue = true) {
@@ -247,7 +304,11 @@ function setPlan(planKey, forceValue = true) {
 function saveForm() {
   const data = {};
   document.querySelectorAll("#contractForm input, #contractForm select, #contractForm textarea")
-    .forEach(input => data[input.id] = input.value);
+    .forEach(input => {
+      data[input.id] = input.type === "checkbox" || input.type === "radio"
+        ? input.checked
+        : input.value;
+    });
   setStoredItem("axis1ContractDraft", JSON.stringify(data));
 }
 
@@ -260,7 +321,9 @@ function loadForm() {
   }
 
   Object.entries(saved).forEach(([id, value]) => {
-    if ($(id)) $(id).value = value;
+    if (!$(id)) return;
+    if ($(id).type === "checkbox" || $(id).type === "radio") $(id).checked = value === true;
+    else $(id).value = value;
   });
 }
 
@@ -296,6 +359,9 @@ $("monthlyValue").addEventListener("blur", event => {
 
 document.querySelectorAll("#contractForm input, #contractForm select, #contractForm textarea")
   .forEach(input => input.addEventListener("input", updateContract));
+
+document.querySelectorAll('input[name="channels"], input[name="metaAds"]')
+  .forEach(input => input.addEventListener("change", updateContract));
 
 loadForm();
 setDefaultDates();
